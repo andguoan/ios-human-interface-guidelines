@@ -110,7 +110,7 @@
 使用页面视图控制器来展示那些线性的内容——例如一个故事的文本，或者是一些可以被自然地拆分成块的内容——比如说，日历。
 如果需要，可以创建一个让用户实现非线性跳页的方式。页面视图控制器让用户从一页移动到前一页或者后一页，而并不支持用户在并不相邻的页面间快速切换。如果你希望在页面视图控制器中展示一些非线性的内容——比如说字典，或者书籍的目录——那么你就需要自定义一种方式，让用户可以随意地到达不同的内容区块。
 
-##弹出框 - Popover
+## 弹出框 - Popover
 弹出框就是一个当你点击某一按钮在屏幕上出现的瞬态区域。
  
 >提示   
@@ -132,13 +132,14 @@
 本节中的指南包括界面和用户是在一个水平正常的环境中显示的用户体验。如果你提出的 popover 是在水平紧凑的环境是全屏显示的，看[Modal View](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/Alerts.html#//apple_ref/doc/uid/TP40006556-CH14-SW3)的指导原则，其他全屏幕模式视图模型视图。
 
 避免提供“取消”按钮。当用户不希望继续浏览popover时，它应该自动关闭。确定了当一个popover需要关闭时，考虑下面的情况：
-|If a popover… 	|Do this...  |
-|-------|:-------:|---:|
-|Provides options that affect the main view, but doesn’t implement an inspector |	Close the popover as soon as people make a choice or when they tap anywhere outside its bounds, including the control that reveals the popover. |
-|Implements an inspector |	Close the popover when people tap anywhere outside its bounds, including the control that reveals the popover. 
-In this scenario, don’t close the popover as soon as people make a choice, because they might want to make an additional choice or change the attributes of the current choice. |
-|Enables a task |	Close the popover when people complete or cancel the task by tapping a button in the popover, such as Done or Cancel. 
-In this scenario, you may not want to close the popover when people tap outside its borders, because it might be important that people finish—or explicitly abandon—the task. Otherwise, save people’s input when they tap outside a popover’s borders, just as you would if they tapped Done. |
+
+如果弹出框…	那么…
+提供的选项影响了主菜单，却不执行检查	只要当用户做出选择或是点击弹出框外的任意空白处，就马上关闭弹出框以及与弹出框有关的控件部分。
+执行检察	当用户点击弹出框外的任意空白处，就马上关闭弹出框以及与弹出框有关的控件部分。
+这种情况下，不要当用户做出选择就马上关闭它，因为用户可能想做出其他选择或者改变现在选择的属性。
+完成一项任务	当用户通过点击弹出框中的按钮（例如“Done”“Cancel”）来完成或取消一个任务时，关闭弹出框。
+这种情况下，当用户点击框外的时候可能不希望关闭它，因为它可能对于用户完成或准确的删除某项任务是十分重要的。否则，当用户点击框外区域的时候保存他们的输入内容，就像他们点击了Done一样。
+
   
 一般来说，当用户点击 popover 的外边界时，尽可能减少他们的工作。不是所有人都需要一个“取消”按钮，你的取消按钮可能会给他们带来误会。如果用户点击“取消”按钮，那意味着要删除刚刚完成过的工作。  
 使 popover 箭头尽可能直接的元素，显示它。这样做可以帮助人们记住弹出来自什么任务或对象的关联。  
@@ -151,7 +152,7 @@ In this scenario, you may not want to close the popover when people tap outside 
 确保自定义 popover 看上去也是一个普通的弹出框。虽然我们可以用[UIPopoverBackgroundView APIs]()很轻易地自定义 popover 的可视化效果，但还是要避免做出人们难以辨别的 popover。如果你把 popover 的样子改动过多，用户就不能以他们的经验来理解 popover 在应用程序中的作用了。  
 如果你修改了 popover 的尺寸那一定要小心。如果你用 popover 同时显示内容和内容的扩展时，你可能希望改变 popover 的尺寸。当你适配了 popover 的尺寸时，它也许是个不错的创新，因为它避免了一个新的 popover 在上一个 popover 中出现。  
 
-##滚动视图 - Scroll View
+## 滚动视图 - Scroll View
 滚动视图方便用户浏览尺寸超越滚动视图边界的图片（下图中地球的图片无论是长度还是宽度都超过了）。
  
 >提示   
@@ -169,7 +170,7 @@ In this scenario, you may not want to close the popover when people tap outside 
 一般来说，一次只展示一个滚动视图。如果在一屏中同时存在不止一个滚动视图，由于用户滚动屏幕时动作幅度经常都会很大，他们很容易会碰到另一个。如果你确实要在同屏中放两个滚动视图，可以考虑给他们设定不同的滚动方向，来避免用户想要滚动一个视图的时候误操作。比如iPhone上的股票应用，纵向滚动上半部分会展示股票报价，横向滚动下半部分时则展示该公司的特定信息。
 
 
-##分离视图控制器 - Split View Controller
+## 分离视图控制器 - Split View Controller
 分离视图控制器是一个全屏的视图控制器，它管理着两级视图。
  
 >提示   
@@ -193,7 +194,7 @@ In this scenario, you may not want to close the popover when people tap outside 
 **通常，让当前的选择在主窗口中长时间显示。**尽管第二窗格的内容是可以改变的，它应始终与保持在主窗格中选定的项目有关。这样的观看体验，帮人们了解在主窗格中的项之间的关系和二次窗格的内容。  
 **如果合适的话，给用户一个可选择的方式来访问主窗格中。**通常，只有次级窗格在水平紧凑的环境中显示时，为用户提供一个按钮（通常位于一个导航栏）来显示和隐藏主窗格。拆分视图控制器还支持滑动手势进行显示/隐藏行动。如果你的应用程序使用滑动手势来执行其他功能，你应该让人们点击访问主窗格。  
 
-##表格视图 - Table View
+## 表格视图 - Table View
 表格视图以单列多行的形式来展示数据。
  
 >提示   
@@ -210,15 +211,19 @@ iOS定义了两种表格样式:
 在这两种风格中，当用户点击一个可选择的项目时，表格行高亮显示。如果选择了一个行，跳转到一个新的屏幕，被选的行高亮显示作为新屏幕的出现提示。当用户返回前一个屏幕时，最初选定的行，再变成高亮，简要地提醒用户这是之前选择的内容。（这并不突出）。
   
 iOS提供了若干表格视图元素(table-view elements)来扩展表格视图的功能。除了特别标明外，这些元素只适用于表格视图。
-|Table view element |	Name |	Meaning |
-|-------|:-------:|:---|
-|![](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/Art/check_2x.png)	|Checkmark |	Indicates that the row is selected. |
-|![]() 	|Disclosure indicator |	Displays another table associated with the row. |
-| 	|Detail Disclosure button |	Displays additional details about the row in a new view (for information on how to use this element outside of a table, see Popover). |
-| 	|Row reorder |	Indicates that the row can be dragged to another location in the table. |
-| 	|Row insert |	Adds a new row to the table. |
-| 	|Delete button control |	In an editing context, reveals and hides the Delete button for a row. |
-| 	|Delete button |	Deletes the row. |
+
+视图元素	名称	含义
+ ![](image/check_2x.png)	对号	指示这行被选中
+ 	![](image/disclosure_indicator_2x.png)指示符号	显示另一个与这行相关的表
+ 	![](image/detail_disclosure_2x.png)细节提示按钮	在新视图中显示与这行有关的更多细节（了解如何运用这个元素，查看[popover](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/ContentViews.html#//apple_ref/doc/uid/TP40006556-CH13-SW19)）
+
+ 	![](image/row_reorder_2x.png)行排序	指示该行可以在表中被拖拽到其他位置。
+ 	![](image/row_insert_2x.png)增加行	给表加一个新的行
+ 	![](image/delete_control_2x.png)删除按钮控件	在编辑状态下，显示和隐藏删除一行”按钮。
+
+ ![](image/delete_button_2x.png)	删除按钮	删除行
+
+
   
 除了以上表格中列举的元素外，iOS定义了刷新控件，让用户可以刷新当前的表格内容。想要了解更多关于刷新控件的用法，可以参考[Refresh Control](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/Controls.html#//apple_ref/doc/uid/TP40006556-CH15-SW131). 
 iOS定义了在平铺型表格和分组型表格中最常用到的四种单元格布局样式。每种单元格样式都有最适合展示的信息类型。
